@@ -166,35 +166,53 @@ bindsym Mod1+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
-        
-        position top
+    status_command    i3status
+    position          top
+    
+    colors {
+        background #000000
+        statusline #ffffff
+
+        focused_workspace  #ffffff #285577
+        active_workspace   #ffffff #333333
+        inactive_workspace #888888 #222222
+        urgent_workspace   #ffffff #900000
+    }
 }
 
-######## custom change
+#########################
+######custom change######
 
 # lofi 
 bindsym Mod1+d exec rofi -show run
 
 # i3lock
-bindsym $mod+Shift+Return exec i3lock
+bindsym Mod4+Shift+Return exec i3lock -f -i ~/Pictures/wallpaper.png
 
 # transparency
 exec_always --no-startup-id compton
 
 # wallpaper
-exec_always feh --bg-fill --bg-scale ~/Pictures/wallpaper.jpg
+exec_always feh --bg-fill --bg-scale ~/Pictures/wallpaper2.jpg
 
 # gap control
 gaps inner 15
-gaps outer 10
+gaps outer 15
 
 # remove titlebar gap
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 10
+
+for_window [class="Firefox" instance="Navigator"] border none
+
 
 # audio control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+# class                 border  backgr. text    indicator
+client.focused          #2E3436 #2E3436 #ffffff #272C33
+client.focused_inactive #2E3436 #2E3436 #bbbbbb #272C33
+client.unfocused        #2E3436 #2E3436 #bbbbbb #272C33
+client.urgent           #2E3436 #2E3436 #ffffff #272C33
 
