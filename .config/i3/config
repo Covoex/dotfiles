@@ -11,7 +11,7 @@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:SourceCodePro 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -170,7 +170,7 @@ bar {
     position          top
     
     colors {
-        background #000000
+        background #2E3436
         statusline #ffffff
 
         focused_workspace  #ffffff #285577
@@ -186,14 +186,10 @@ bar {
 # lofi 
 bindsym Mod1+d exec rofi -show run
 
-# i3lock
-bindsym Mod4+Shift+Return exec i3lock -f -i ~/Pictures/wallpaper.png
-
-# transparency
 exec_always --no-startup-id compton
 
 # wallpaper
-exec_always feh --bg-fill --bg-scale ~/Pictures/wallpaper2.jpg
+exec_always feh --bg-fill --bg-scale ~/Downloads/wallpaper.jpg
 
 # gap control
 gaps inner 15
@@ -208,11 +204,21 @@ for_window [class="Firefox" instance="Navigator"] border none
 # audio control
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle 
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle
+bindsym XF86Launch1 exec firefox #black button
 
-# class                 border  backgr. text    indicator
+bindsym XF86ScreenSaver exec i3lock #F3
+bindsym XF86Display exec #F6 
+bindsym XF86WebCam exec #F7
+bindsym XF86MonBrightnessDown exec $(tee /sys/class/backlight/intel_backlight/brightness <<< $(($(current_value) - 100))) #F8
+bindsym XF86MonBrightnessUp exec $(tee /sys/class/backlight/intel_backlight/brightness <<< $(($(current_value) + 100))) #F9
+bindsym XF86AudioPrev exec playerctl previous #F10
+bindsym XF86AudioPlay exec playerctl play-pause #F11
+bindsym XF86AudioNext exec playerctl next #F12
+
+#                 border  backgr. text    indicator
 client.focused          #2E3436 #2E3436 #ffffff #272C33
 client.focused_inactive #2E3436 #2E3436 #bbbbbb #272C33
 client.unfocused        #2E3436 #2E3436 #bbbbbb #272C33
 client.urgent           #2E3436 #2E3436 #ffffff #272C33
-
